@@ -9,6 +9,7 @@ import pandas as pd
 from pathlib import Path
 from datetime import datetime
 import numpy as np
+import time
 
 def setup_daft():
     """Initialize Daft for error analysis"""
@@ -375,6 +376,9 @@ def main():
     print("Analyzing Next.js errors with embeddings and RAG...")
     print()
     
+    # Start timing
+    start_time = time.time()
+    
     try:
         # Setup
         setup_daft()
@@ -403,8 +407,12 @@ def main():
         # Generate insights
         generate_insights(df)
         
+        # Calculate total time
+        total_time = time.time() - start_time
+        
         print("\n🎉 ANALYSIS COMPLETE!")
         print("=" * 50)
+        print(f"⚡ Total processing time: {total_time:.2f} seconds")
         print("✅ Successfully demonstrated:")
         print("   • Image embedding generation with UDFs")
         print("   • Text embedding generation with UDFs")
